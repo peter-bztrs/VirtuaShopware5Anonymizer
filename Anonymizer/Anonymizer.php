@@ -9,10 +9,14 @@
 namespace ShopwareAnonymizer\Anonymizer;
 
 
+use Shopware\Models\Customer\Customer;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\Updater;
 
 class Anonymizer
 {
+    protected $entitiesToAnonymize = [
+        Customer::class,
+    ];
 
     /** @var Updater */
     protected $_updater;
