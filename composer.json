@@ -1,0 +1,14 @@
+{
+    "name": "root/shopware_anonymizer",
+    "description": "Shopware plugin used for anonymizing user data",
+    "require": {
+        "fzaninotto/faker": "^1.8"
+    },
+    "license": "Use without permission hereby forbidden",
+    "authors": [
+        {
+            "name": "Jakub Kułaga",
+            "email": "intern4@wearevirtua.com"
+        }
+    ]
+}
