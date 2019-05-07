@@ -35,11 +35,14 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /** @var string to seed fake data generator */
     protected $identifier;
 
-    /** @var ModelEntity */
-    protected $entity;
-
     /** @var ModelManager */
     protected $modelManager;
+
+    /** @var array */
+    protected $data = [];
+
+    /** @var AnonymizableValue[]|null */
+    protected $values;
 
     /** @var int currentPage of collection for chunking */
     protected $currentPage = 0;
@@ -52,47 +55,77 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     {
         $this->identifier = $identifier;
         $this->modelManager = Shopware()->Models();
-        $this->entity = new $this->entityClass();
-    }
-
-    function clearInstance()
-    {
-        // TODO: Implement clearInstance() method.
-    }
-
-    function setRawData($data)
-    {
-//        $this->entity->find();
-        dump($this->entity);
-        exit;
-    }
-
-    function updateValues()
-    {
-        // TODO: Implement updateValues() method.
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    function getIdentifier()
+    public function clearInstance()
+    {
+        $this->data = [];
+        $this->values = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRawData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getValues()
+    {
+        if ($this->values === null) {
+            $this->values = [];
+            foreach ($this->formattersByAttribute as $attribute => $formatter) {
+                $this->values[$attribute] = new AnonymizableValue(
+                    $formatter,
+                    $this->data[$attribute],
+                    in_array($attribute, $this->uniqueAttributes)
+                );
+            }
+        }
+
+        return $this->values;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateValues()
+    {
+        $values = array_map(function (AnonymizableValue $value) {
+            return $value->getValue();
+        },
+        $this->values
+        );
+//        todo zdumpować baze danych, przetestować manualnie i zrobić testy phpunit, wywalic alias do private $alias
+//        $this->modelManager->getConnection()->update(
+//            $this->getTableName(),
+//            $values,
+//            ['id' => $this->data['id']]
+//        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIdentifier()
     {
         return $this->identifier;
     }
 
-    function getValues()
-    {
-        // TODO: Implement getValues() method.
-    }
-
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    function getEntityName()
+    public function getEntityName()
     {
         return $this->entityName;
     }
-
 
     public function getCollectionIterator()
     {
@@ -108,16 +141,9 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         $iterator->setSize($size);
         $iterator->setIterationOffset($iterationOffset);
 
-//        dump($iterator);
 
         return $iterator;
     }
-// todo tutaj robie, do sprawdzenia czy tak podziala fajnie
-//    private function getWholeEntityChunk()
-//    {
-//        return $this->modelManager->getRepository($this->entityClass)
-//            ->findBy([], [], self::ROWS_PER_QUERY, self::ROWS_PER_QUERY * $this->currentPage);
-//    }
 
     /**
      * @return array
@@ -163,5 +189,13 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         array_unshift($attributes, $alias . '.id');
 
         return $attributes;
+    }
+
+    /**
+     * @return string
+     */
+    private function getTableName()
+    {
+        return $this->modelManager->getClassMetadata($this->entityClass)->getTableName();
     }
 }
