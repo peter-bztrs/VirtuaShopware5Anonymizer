@@ -6,7 +6,7 @@
  * Time: 15:30
  */
 
-namespace ShopwareAnonymizer\Bridge;
+namespace ShopwareAnonymizer\Anonymizer\Bridge;
 
 
 use Shopware\Components\Model\ModelEntity;
@@ -14,41 +14,97 @@ use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
 
 class Iterator implements CollectionIterator
 {
-    /**
-     * @var ModelEntity
-     */
-    protected $_repository;
+    /** @var int number of rows in entity */
+    protected $totalSize;
+
+    /** @var array of chunked data from db */
+    protected $collection;
 
     /**
      * @var string[]
      */
-    protected $_data;
+    protected $data;
+
     /**
      * @var int Iteration counter
      */
-    protected $_iteration;
+    protected $iteration;
+
     /**
      * @var int Iteration counter offset for chunking
      */
-    protected $_iterationOffset = 0;
+    protected $iterationOffset = 0;
 
-    function getRawData()
+    /**
+     * Iterator constructor.
+     * @param array $collection
+     */
+    public function __construct(array $collection)
     {
-        // TODO: Implement getRawData() method.
+        $this->collection = $collection;
     }
 
-    function getSize()
+    /**
+     * @param array $data
+     */
+    public function setRawData(array $data)
     {
-        // TODO: Implement getSize() method.
+        $this->data = $data;
     }
 
-    function walk($callable)
+    public function getRawData()
     {
-        // TODO: Implement walk() method.
+        return $this->data;
     }
 
-    function getIteration()
+    /**
+     * @param int $size
+     */
+    public function setSize($size)
     {
-        return $this->_iteration;
+        $this->totalSize = $size;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->totalSize;
+    }
+
+    public function walk($callable)
+    {
+        $self = $this; // PHP 5.3
+        array_walk(
+            $this->collection,
+            function ($arg) use ($callable, $self) {
+                $self->setRawData($arg);
+                $self->iteration++;
+                $callable($self);
+            });
+//        todo implement afterWalk
+//        $this->_afterWalk();
+    }
+
+    /**
+     * @param int $offset
+     */
+    public function setIterationOffset($offset)
+    {
+        $this->iterationOffset = $offset;
+    }
+
+    public function setIteration($iteration)
+    {
+        $this->iteration = $iteration;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIteration()
+    {
+        return $this->iterationOffset + $this->iteration;
     }
 }
