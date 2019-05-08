@@ -26,4 +26,6 @@ class Customer extends AbstractBridgeEntity
     protected $uniqueAttributes = [
         'email'
     ];
+
+    protected $entityName = 'Customer';
 }

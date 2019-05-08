@@ -47,6 +47,8 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /** @var int currentPage of collection for chunking */
     protected $currentPage = 0;
 
+    private $alias = 'ent';
+
     /**
      * AbstractBridgeEntity constructor.
      * @param $identifier string
@@ -103,12 +105,12 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         },
         $this->values
         );
-//        todo zdumpować baze danych, przetestować manualnie i zrobić testy phpunit, wywalic alias do private $alias
-//        $this->modelManager->getConnection()->update(
-//            $this->getTableName(),
-//            $values,
-//            ['id' => $this->data['id']]
-//        );
+//        todo zrobić testy phpunit
+        $this->modelManager->getConnection()->update(
+            $this->getTableName(),
+            $values,
+            ['id' => $this->data['id']]
+        );
     }
 
     /**
@@ -127,6 +129,12 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         return $this->entityName;
     }
 
+    /**
+     * Make iterator for chunked data
+     * @return Iterator|null
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getCollectionIterator()
     {
         $collection = $this->getDataChunk();
@@ -141,8 +149,16 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         $iterator->setSize($size);
         $iterator->setIterationOffset($iterationOffset);
 
-
         return $iterator;
+    }
+
+    /**
+     * Check if provided entity class exists
+     * @return bool
+     */
+    public function entityExists()
+    {
+        return class_exists($this->entityClass);
     }
 
     /**
@@ -150,9 +166,8 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     private function getDataChunk()
     {
-        $alias = 'ent';
-        $data = $this->modelManager->createQueryBuilder()->select($this->createSelectArray($alias))
-            ->from($this->entityClass, $alias)
+        $data = $this->modelManager->createQueryBuilder()->select($this->createSelectArray($this->alias))
+            ->from($this->entityClass, $this->alias)
             ->setMaxResults(self::ROWS_PER_QUERY)
             ->setFirstResult(self::ROWS_PER_QUERY * $this->currentPage)
             ->getQuery()
@@ -168,10 +183,9 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     private function getEntitySize()
     {
-        $alias = 'ent';
         return (int) $this->modelManager->createQueryBuilder()
-            ->select('count(' . $alias . '.id)')
-            ->from($this->entityClass, $alias)
+            ->select('count(' . $this->alias . '.id)')
+            ->from($this->entityClass, $this->alias)
             ->getQuery()
             ->getSingleScalarResult();
     }
