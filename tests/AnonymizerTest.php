@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 use ShopwareAnonymizer\Anonymizer\Anonymizer;
 use Shopware\Components\Test\Plugin\TestCase;
 
+//todo make tests, this is only first approach
 class AnonymizerTest extends TestCase
 {
     /** @var Connection */

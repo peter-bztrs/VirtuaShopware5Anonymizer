@@ -1,38 +1,48 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: virtua
- * Date: 2019-04-30
- * Time: 14:22
+ * User: Jakub Kułaga
+ * Date: 2019-05-09
+ * Time: 09:41
+ *
+ * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
 namespace ShopwareAnonymizer\Anonymizer;
 
-
 use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Customer;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\Updater;
 
 class Anonymizer
 {
-    protected $entitiesBySeed = [
-        'userSeed' => [
+    /**
+     * AbstractBridgeEntity[] by seed used to seed anonymizer
+     * @var array[]
+     */
+    protected $entitiesBySeed = array(
+        'userSeed' => array(
             Customer::class,
-        ]
-    ];
+        )
+    );
 
     /** @var Updater */
-    protected $_updater;
+    protected $updater;
 
+    /**
+     * Anonymizer constructor.
+     */
     public function __construct()
     {
         $anonymizer = new \ShopwareAnonymizer\IntegerNet\Anonymizer\Anonymizer();
-        $this->_updater = new Updater($anonymizer);
+        $this->updater = new Updater($anonymizer);
     }
 
-//  todo make unit tests
-    public function anonymizeAll(){
+    //  todo make unit tests
+    /**
+     * @throws \Doctrine\DBAL\ConnectionException
+     */
+    public function anonymizeAll()
+    {
         $connection = Shopware()->Models()->getConnection();
         $connection->beginTransaction();
         try {
@@ -42,7 +52,7 @@ class Anonymizer
                     $bridgeEntity = new $className($seed);
                     if ($bridgeEntity->entityExists()) {
                         while ($collectionIterator = $bridgeEntity->getCollectionIterator()) {
-                            $this->_updater->update($collectionIterator, $bridgeEntity);
+                            $this->updater->update($collectionIterator, $bridgeEntity);
                         }
                     }
                 }
@@ -59,7 +69,7 @@ class Anonymizer
      */
     public function setOutputStream($stream)
     {
-        $this->_updater->setOutputStream($stream);
+        $this->updater->setOutputStream($stream);
     }
 
     /**
@@ -67,14 +77,15 @@ class Anonymizer
      */
     public function setShowProgress($showProgress)
     {
-        $this->_updater->setShowProgress($showProgress);
+        $this->updater->setShowProgress($showProgress);
     }
 
     /**
-     * @param $steps int How often progress output should be refreshed (default is 1 = after every entity update; example: 10 = every 10 entity updates)
+     * @param $steps int How often progress output should be refreshed
+     * (default is 1 = after every entity update; example: 10 = every 10 entity updates)
      */
     public function setProgressSteps($steps)
     {
-        $this->_updater->setProgressSteps($steps);
+        $this->updater->setProgressSteps($steps);
     }
 }

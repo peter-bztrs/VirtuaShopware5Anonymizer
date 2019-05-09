@@ -3,11 +3,11 @@
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">ShopwareAnonymizer</label>
     <label lang="en">ShopwareAnonymizer</label>
-    <version>1.0.0</version>
-    <copyright>(c) by Shopware AG</copyright>
+    <version>0.0.1</version>
+    <copyright>Virtua</copyright>
     <license>proprietary</license>
-    <link>http://store.shopware.com</link>
-    <author>Shopware AG</author>
+    <link></link>
+    <author>Jakub Kułaga</author>
 
     <compatibility minVersion="5.2.0" />
 

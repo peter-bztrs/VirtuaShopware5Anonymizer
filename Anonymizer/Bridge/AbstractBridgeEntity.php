@@ -1,18 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: virtua
- * Date: 2019-04-30
- * Time: 15:47
+ * User: Jakub Kułaga
+ * Date: 2019-05-09
+ * Time: 09:41
+ *
+ * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
 namespace ShopwareAnonymizer\Anonymizer\Bridge;
 
-
-use Doctrine\ORM\QueryBuilder;
-use Shopware\Components\Model\ModelEntity;
 use Shopware\Components\Model\ModelManager;
-use Shopware\Components\Model\ModelRepository;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
 
@@ -24,10 +21,10 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     protected $entityClass;
 
     /** @var string[], needs to be set in descendants */
-    protected $formattersByAttribute = [];
+    protected $formattersByAttribute = array();
 
     /** @var string[], needs to be set in descendants */
-    protected $uniqueAttributes = [];
+    protected $uniqueAttributes = array();
 
     /** @var string, name of entity as translatable string, needs to be set in descendants */
     protected $entityName;
@@ -39,7 +36,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     protected $modelManager;
 
     /** @var array */
-    protected $data = [];
+    protected $data = array();
 
     /** @var AnonymizableValue[]|null */
     protected $values;
@@ -64,7 +61,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     public function clearInstance()
     {
-        $this->data = [];
+        $this->data = array();
         $this->values = null;
     }
 
@@ -103,9 +100,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         $values = array_map(function (AnonymizableValue $value) {
             return $value->getValue();
         },
-        $this->values
-        );
-//        todo zrobić testy phpunit
+        $this->values);
         $this->modelManager->getConnection()->update(
             $this->getTableName(),
             $values,

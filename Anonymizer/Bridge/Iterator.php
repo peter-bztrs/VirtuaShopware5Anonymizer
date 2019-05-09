@@ -1,15 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: virtua
- * Date: 2019-04-30
- * Time: 15:30
+ * User: Jakub Kułaga
+ * Date: 2019-05-09
+ * Time: 09:41
+ *
+ * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
 namespace ShopwareAnonymizer\Anonymizer\Bridge;
 
-
-use Shopware\Components\Model\ModelEntity;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
 
 class Iterator implements CollectionIterator
@@ -52,6 +51,9 @@ class Iterator implements CollectionIterator
         $this->data = $data;
     }
 
+    /**
+     * @return array
+     */
     public function getRawData()
     {
         return $this->data;
@@ -94,6 +96,9 @@ class Iterator implements CollectionIterator
         $this->iterationOffset = $offset;
     }
 
+    /**
+     * @param $iteration int
+     */
     public function setIteration($iteration)
     {
         $this->iteration = $iteration;

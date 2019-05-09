@@ -1,11 +1,11 @@
 <?php
 
-
+//todo remove after all manual tests
 class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 {
     public function indexAction()
     {
-        $anonymizer = new \ShopwareAnonymizer\Anonymizer\Anonymizer();
+//        $anonymizer = new \ShopwareAnonymizer\Anonymizer\Anonymizer();
 //        $anonymizer->anonymizeAll();
 //        $meta = Shopware()->Container()->get('models')
 //            ->getClassMetadata(\Shopware\Models\Customer\Customer::class)->getTableName();
