@@ -21,7 +21,10 @@ class AnonymizeCommand extends ShopwareCommand
     {
         /** @var Anonymizer $anonymizer */
         $anonymizer = $this->container->get('shopware_anonymizer.anonymizer.anonymizer');
-        $anonymizer->setOutputStream($output);
+
+        $out = fopen('php://stdout', 'w');
+        $anonymizer->setOutputStream($out);
         $anonymizer->anonymizeAll();
+        fclose($out);
     }
 }

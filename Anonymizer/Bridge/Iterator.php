@@ -80,11 +80,10 @@ class Iterator implements CollectionIterator
             $this->collection,
             function ($arg) use ($callable, $self) {
                 $self->setRawData($arg);
-                $self->iteration++;
                 $callable($self);
-            });
-//        todo implement afterWalk
-//        $this->_afterWalk();
+                $self->iteration++;
+            }
+        );
     }
 
     /**
