@@ -10,20 +10,14 @@
 namespace ShopwareAnonymizer\Anonymizer;
 
 use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Customer;
 use ShopwareAnonymizer\IntegerNet\Anonymizer\Updater;
 
 class Anonymizer
 {
     /**
-     * AbstractBridgeEntity[] by seed used to seed anonymizer
-     * @var array[]
+     * @var Seeder
      */
-    protected $entitiesBySeed = array(
-        'userSeed' => array(
-            Customer::class,
-        )
-    );
+    protected $seeder;
 
     /** @var Updater */
     protected $updater;
@@ -35,6 +29,7 @@ class Anonymizer
     {
         $anonymizer = new \ShopwareAnonymizer\IntegerNet\Anonymizer\Anonymizer();
         $this->updater = new Updater($anonymizer);
+        $this->seeder = new Seeder();
     }
 
     //  todo make unit tests
@@ -46,7 +41,7 @@ class Anonymizer
         $connection = Shopware()->Models()->getConnection();
         $connection->beginTransaction();
         try {
-            foreach ($this->entitiesBySeed as $seed => $entityClassnames) {
+            foreach ($this->seeder->getEntitiesBySeed() as $seed => $entityClassnames) {
                 foreach ($entityClassnames as $className) {
                     /** @var AbstractBridgeEntity $bridgeEntity */
                     $bridgeEntity = new $className($seed);
