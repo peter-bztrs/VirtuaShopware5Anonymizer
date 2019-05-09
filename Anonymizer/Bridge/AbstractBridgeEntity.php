@@ -186,12 +186,13 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     protected function getDataChunk()
     {
-        $data = $this->modelManager->createQueryBuilder()->select($this->createSelectArray($this->alias))
-            ->from($this->entityClass, $this->alias)
+        $data = $this->modelManager->getDBALQueryBuilder()
+            ->select($this->createSelectArray($this->alias))
+            ->from($this->getTableName(), $this->alias)
             ->setMaxResults(self::ROWS_PER_QUERY)
             ->setFirstResult(self::ROWS_PER_QUERY * $this->currentPage)
-            ->getQuery()
-            ->execute();
+            ->execute()
+            ->fetchAll();
 
         return $data ? $data : [];
     }

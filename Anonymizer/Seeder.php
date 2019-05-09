@@ -8,6 +8,7 @@
 
 namespace ShopwareAnonymizer\Anonymizer;
 
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Customer;
 
 /**
@@ -23,6 +24,7 @@ class Seeder
     protected $entitiesBySeed = array(
         'userSeed' => array(
             Customer::class,
+            Address::class
         )
     );
 
