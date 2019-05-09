@@ -17,8 +17,8 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
 {
     const ROWS_PER_QUERY = 50000;
 
-    /** @var string Entity::class, needs to be set in descendants */
-    protected $entityClass;
+    /** @var string, needs to be set in descendants */
+    protected $tableName;
 
     /** @var string[], needs to be set in descendants */
     protected $formattersByAttribute = array();
@@ -69,14 +69,6 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /**
      * {@inheritdoc}
      */
-    public function setRawData($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getValues()
     {
         if ($this->values === null) {
@@ -101,12 +93,61 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         $values = array_map(function (AnonymizableValue $value) {
             return $value->getValue();
         },
-        $this->values);
+            $this->values);
         $this->modelManager->getConnection()->update(
-            $this->getTableName(),
+            $this->tableName,
             $values,
             ['id' => $this->data['id']]
         );
+    }
+
+    /**
+     * Make iterator for chunked data
+     * @return Iterator|null
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCollectionIterator()
+    {
+        $collection = $this->getDataChunk();
+        $iterationOffset = $this->currentPage * self::ROWS_PER_QUERY;
+        $size = $this->getEntitySize();
+        if ($size <= $iterationOffset) {
+            return null;
+        }
+        $this->currentPage++;
+
+        $iterator = new Iterator($collection);
+        $iterator->setSize($size);
+        $iterator->setIterationOffset($iterationOffset);
+
+        return $iterator;
+    }
+
+    /**
+     * Check if provided entity class exists
+     * @return bool
+     */
+    public function tableExists()
+    {
+        return (bool) $this->modelManager->getConnection()
+            ->getSchemaManager()->tablesExist([$this->tableName]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRawData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
     }
 
     /**
@@ -150,45 +191,13 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     }
 
     /**
-     * Make iterator for chunked data
-     * @return Iterator|null
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function getCollectionIterator()
-    {
-        $collection = $this->getDataChunk();
-        $iterationOffset = $this->currentPage * self::ROWS_PER_QUERY;
-        $size = $this->getEntitySize();
-        if ($size <= $iterationOffset) {
-            return null;
-        }
-        $this->currentPage++;
-
-        $iterator = new Iterator($collection);
-        $iterator->setSize($size);
-        $iterator->setIterationOffset($iterationOffset);
-
-        return $iterator;
-    }
-
-    /**
-     * Check if provided entity class exists
-     * @return bool
-     */
-    public function entityExists()
-    {
-        return class_exists($this->entityClass);
-    }
-
-    /**
      * @return array
      */
     protected function getDataChunk()
     {
         $data = $this->modelManager->getDBALQueryBuilder()
             ->select($this->createSelectArray($this->alias))
-            ->from($this->getTableName(), $this->alias)
+            ->from($this->tableName, $this->alias)
             ->setMaxResults(self::ROWS_PER_QUERY)
             ->setFirstResult(self::ROWS_PER_QUERY * $this->currentPage)
             ->execute()
@@ -204,11 +213,11 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     protected function getEntitySize()
     {
-        return (int) $this->modelManager->createQueryBuilder()
+        return (int) $this->modelManager->getDBALQueryBuilder()
             ->select('count(' . $this->alias . '.id)')
-            ->from($this->entityClass, $this->alias)
-            ->getQuery()
-            ->getSingleScalarResult();
+            ->from($this->tableName, $this->alias)
+            ->execute()
+            ->fetchColumn();
     }
 
     /**
@@ -224,13 +233,5 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         array_unshift($attributes, $alias . '.id');
 
         return $attributes;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getTableName()
-    {
-        return $this->modelManager->getClassMetadata($this->entityClass)->getTableName();
     }
 }

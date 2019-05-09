@@ -5,11 +5,7 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 {
     public function indexAction()
     {
-        $res = $this->getModelManager()->getDBALQueryBuilder()
-            ->select(['a.' . 'additional_address_line1'])
-            ->from('s_user_addresses', 'a')
-            ->execute()
-            ->fetchAll();
+        $res = $this->getModelManager()->getConnection()->getSchemaManager()->tablesExist(['kurwa']);
         dump($res);
 //        $anonymizer = new \ShopwareAnonymizer\Anonymizer\Anonymizer();
 //        $anonymizer->anonymizeAll();

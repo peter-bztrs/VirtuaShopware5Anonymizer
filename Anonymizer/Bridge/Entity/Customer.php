@@ -30,5 +30,5 @@ class Customer extends AbstractBridgeEntity
     );
 
     /** {@inheritdoc} */
-    protected $entityName = 'Customer';
+    protected $tableName = 's_user';
 }

@@ -45,7 +45,7 @@ class Anonymizer
                 foreach ($entityClassnames as $className) {
                     /** @var AbstractBridgeEntity $bridgeEntity */
                     $bridgeEntity = new $className($seed);
-                    if ($bridgeEntity->entityExists()) {
+                    if ($bridgeEntity->tableExists()) {
                         while ($collectionIterator = $bridgeEntity->getCollectionIterator()) {
                             $this->updater->update($collectionIterator, $bridgeEntity);
                         }

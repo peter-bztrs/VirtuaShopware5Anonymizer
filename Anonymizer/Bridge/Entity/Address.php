@@ -24,7 +24,7 @@ class Address extends AbstractBridgeEntity
         'street'   => 'streetAddress',
         'zipcode'   => 'postcode',
         'city'   => 'city',
-        'phone'   => 'tollFreeNumber',
+        'phone'   => 'e164PhoneNumber',
         'additional_address_line1'   => 'address',
         'additional_address_line2'   => 'address',
     );
@@ -34,5 +34,5 @@ class Address extends AbstractBridgeEntity
     );
 
     /** {@inheritdoc} */
-    protected $entityName = 'Address';
+    protected $tableName = 's_user_addresses';
 }
