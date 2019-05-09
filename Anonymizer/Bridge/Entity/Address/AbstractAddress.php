@@ -7,28 +7,26 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity;
+namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
 use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
-class Customer extends AbstractBridgeEntity
+abstract class AbstractAddress extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $entityClass = \Shopware\Models\Customer\Customer::class;
-
-    /** {@inheritdoc} */
     protected $formattersByAttribute = array(
-        'email'      => 'safeEmail',
+        'company'      => 'company',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
-        'birthday'   => 'date'
+        'street'   => 'streetAddress',
+        'zipcode'   => 'postcode',
+        'city'   => 'city',
+        'phone'   => 'e164PhoneNumber',
+        'additional_address_line1'   => 'address',
+        'additional_address_line2'   => 'address',
     );
 
     /** {@inheritdoc} */
     protected $uniqueAttributes = array(
-        'email'
     );
-
-    /** {@inheritdoc} */
-    protected $tableName = 's_user';
 }

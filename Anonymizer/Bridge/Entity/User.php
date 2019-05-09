@@ -11,28 +11,24 @@ namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
 use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
-class Address extends AbstractBridgeEntity
+class User extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $entityClass = \Shopware\Models\Customer\Address::class;
-
-    /** {@inheritdoc} */
     protected $formattersByAttribute = array(
-        'company'      => 'company',
+        'email'      => 'safeEmail',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
-        'street'   => 'streetAddress',
-        'zipcode'   => 'postcode',
-        'city'   => 'city',
-        'phone'   => 'e164PhoneNumber',
-        'additional_address_line1'   => 'address',
-        'additional_address_line2'   => 'address',
+        'birthday'   => 'date'
     );
 
     /** {@inheritdoc} */
     protected $uniqueAttributes = array(
+        'email'
     );
 
     /** {@inheritdoc} */
-    protected $tableName = 's_user_addresses';
+    protected $tableName = 's_user';
+
+    /** {@inheritdoc} */
+    protected $entityName = 'User';
 }
