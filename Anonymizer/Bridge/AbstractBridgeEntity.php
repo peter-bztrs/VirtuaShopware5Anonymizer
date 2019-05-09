@@ -44,7 +44,8 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /** @var int currentPage of collection for chunking */
     protected $currentPage = 0;
 
-    private $alias = 'ent';
+    /** @var string */
+    protected $alias = 'ent';
 
     /**
      * AbstractBridgeEntity constructor.
@@ -125,6 +126,30 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     }
 
     /**
+     * @return string
+     */
+    public function getEntityClass()
+    {
+        return $this->entityClass;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFormattersByAttribute()
+    {
+        return $this->formattersByAttribute;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getUniqueAttributes()
+    {
+        return $this->uniqueAttributes;
+    }
+
+    /**
      * Make iterator for chunked data
      * @return Iterator|null
      * @throws \Doctrine\ORM\NoResultException
@@ -159,7 +184,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /**
      * @return array
      */
-    private function getDataChunk()
+    protected function getDataChunk()
     {
         $data = $this->modelManager->createQueryBuilder()->select($this->createSelectArray($this->alias))
             ->from($this->entityClass, $this->alias)
@@ -176,7 +201,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    private function getEntitySize()
+    protected function getEntitySize()
     {
         return (int) $this->modelManager->createQueryBuilder()
             ->select('count(' . $this->alias . '.id)')
@@ -189,7 +214,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      * @param $alias
      * @return string[]
      */
-    private function createSelectArray($alias)
+    protected function createSelectArray($alias)
     {
         $attributes = array_keys($this->formattersByAttribute);
         array_walk($attributes, function (&$attribute) use ($alias) {
@@ -203,7 +228,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /**
      * @return string
      */
-    private function getTableName()
+    protected function getTableName()
     {
         return $this->modelManager->getClassMetadata($this->entityClass)->getTableName();
     }

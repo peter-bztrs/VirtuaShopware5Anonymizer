@@ -17,18 +17,17 @@ class Customer extends AbstractBridgeEntity
     protected $entityClass = \Shopware\Models\Customer\Customer::class;
 
     /** {@inheritdoc} */
-    protected $formattersByAttribute = [
+    protected $formattersByAttribute = array(
         'email'      => 'safeEmail',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
-        'salutation' => 'title',
         'birthday'   => 'date'
-    ];
+    );
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = [
+    protected $uniqueAttributes = array(
         'email'
-    ];
+    );
 
     /** {@inheritdoc} */
     protected $entityName = 'Customer';

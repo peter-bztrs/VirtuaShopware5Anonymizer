@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwareAnonymizer\Tests;
+namespace ShopwareAnonymizer\Test;
 
 use ShopwareAnonymizer\ShopwareAnonymizer as Plugin;
 use Shopware\Components\Test\Plugin\TestCase;

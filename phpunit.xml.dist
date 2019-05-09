@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit bootstrap="./tests/bootstrap.php">
+<phpunit bootstrap="./Test/bootstrap.php">
 <testsuite name="ShopwareAnonymizer Test Suite">
-    <directory>tests</directory>
+    <directory>Test</directory>
 </testsuite>
 </phpunit>
