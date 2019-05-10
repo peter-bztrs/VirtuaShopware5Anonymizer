@@ -9,7 +9,7 @@
 
 namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-class UserShippingAddress extends AbstractAddress
+class UserShippingaddress extends AbstractAddress
 {
     public function __construct($identifier)
     {
@@ -21,5 +21,5 @@ class UserShippingAddress extends AbstractAddress
     protected $tableName = 's_user_shippingaddress';
 
     /** {@inheritdoc} */
-    protected $entityName = 'Shipping Address';
+    protected $entityName = 'User Shippingaddress';
 }

@@ -15,5 +15,5 @@ class UserAddresses extends AbstractAddress
     protected $tableName = 's_user_addresses';
 
     /** {@inheritdoc} */
-    protected $entityName = 'User Address';
+    protected $entityName = 'User Addresses';
 }

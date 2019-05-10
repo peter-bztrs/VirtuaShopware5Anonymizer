@@ -9,8 +9,9 @@
 namespace ShopwareAnonymizer\Anonymizer;
 
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddresses;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingAddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingAddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingaddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingaddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsLogs;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
@@ -21,7 +22,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
  */
 class Seeder
 {
-    /**
+    /** todo get tesing data and check wchich tables needs to be seed by same seed
      * AbstractBridgeEntity[] by seed used to seed anonymizer
      * @var array[]
      */
@@ -33,6 +34,8 @@ class Seeder
             UserShippingAddress::class,
             ArticlesVote::class,
             BlogComments::class,
+
+            CampaignsLogs::class,
         )
     );
 
