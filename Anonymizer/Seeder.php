@@ -21,6 +21,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CustomerSearchIndex;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -41,6 +42,7 @@ class Seeder
             UserShippingAddress::class,
             ArticlesVote::class,
             BlogComments::class,
+            CustomerSearchIndex::class,
 
             CampaignsLogs::class,
             CampaignsMailaddresses::class,
