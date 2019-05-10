@@ -9,7 +9,7 @@
 
 namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-class ShippingAddress extends AbstractAddress
+class UserShippingAddress extends AbstractAddress
 {
     public function __construct($identifier)
     {

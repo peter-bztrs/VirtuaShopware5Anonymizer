@@ -7,21 +7,15 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity;
+namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment;
 
 use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
-class ArticlesVote extends AbstractBridgeEntity
+abstract class AbstractComment extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = array(
         'name'  => 'name',
         'email'      => 'safeEmail',
     );
-
-    /** {@inheritdoc} */
-    protected $tableName = 's_articles_vote';
-
-    /** {@inheritdoc} */
-    protected $entityName = 'Articles Vote';
 }

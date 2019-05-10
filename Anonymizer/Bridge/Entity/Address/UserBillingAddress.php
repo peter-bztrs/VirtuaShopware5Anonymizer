@@ -9,7 +9,7 @@
 
 namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-class BillingAddress extends AbstractAddress
+class UserBillingAddress extends AbstractAddress
 {
     /** {@inheritdoc} */
     protected $tableName = 's_user_billingaddress';

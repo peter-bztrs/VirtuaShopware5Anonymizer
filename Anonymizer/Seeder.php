@@ -8,10 +8,11 @@
 
 namespace ShopwareAnonymizer\Anonymizer;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\BillingAddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\ShippingAddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\ArticlesVote;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddresses;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingAddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingAddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -27,10 +28,11 @@ class Seeder
     protected $entitiesBySeed = array(
         'userSeed' => array(
             User::class,
-            UserAddress::class,
-            BillingAddress::class,
-            ShippingAddress::class,
+            UserAddresses::class,
+            UserBillingAddress::class,
+            UserShippingAddress::class,
             ArticlesVote::class,
+            BlogComments::class,
         )
     );
 
