@@ -21,7 +21,7 @@ abstract class AbstractAddress extends AbstractBridgeEntity
         'street'   => 'streetAddress',
         'zipcode'   => 'postcode',
         'city'   => 'city',
-        'salutation' => 'title',
+        'title' => 'title',
         'phone'   => 'e164PhoneNumber',
         'additional_address_line1'   => 'address',
         'additional_address_line2'   => 'address',

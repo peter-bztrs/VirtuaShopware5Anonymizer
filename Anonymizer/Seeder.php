@@ -8,6 +8,7 @@
 
 namespace ShopwareAnonymizer\Anonymizer;
 
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\OrderBillingaddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddresses;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingaddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingaddress;
@@ -48,6 +49,8 @@ class Seeder
             CampaignsLogs::class,
             CampaignsMailaddresses::class,
             CampaignsMaildata::class,
+
+            OrderBillingaddress::class,
         ),
         'cms' => array(
             CmsSupport::class,
