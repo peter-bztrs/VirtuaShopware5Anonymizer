@@ -41,6 +41,7 @@ class Anonymizer
         $connection->beginTransaction();
         try {
             foreach ($this->seeder->getEntitiesBySeed() as $seed => $entityClassnames) {
+                //todo salt seed here, with random number?
                 foreach ($entityClassnames as $className) {
                     /** @var AbstractBridgeEntity $bridgeEntity */
                     $bridgeEntity = new $className($seed);

@@ -17,6 +17,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMaildata;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CmsSupport;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -41,9 +42,13 @@ class Seeder
             CampaignsLogs::class,
             CampaignsMailaddresses::class,
             CampaignsMaildata::class,
-
+        ),
+        'cms' => array(
             CmsSupport::class,
-        )
+        ),
+        'coreAuth' => array(
+            CoreAuth::class,
+        ),
     );
 
     /**
