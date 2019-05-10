@@ -13,6 +13,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingaddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingaddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsLogs;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMailaddresses;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMaildata;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
@@ -37,7 +38,8 @@ class Seeder
             BlogComments::class,
 
             CampaignsLogs::class,
-            CampaignsMailaddresses::class
+            CampaignsMailaddresses::class,
+            CampaignsMaildata::class
         )
     );
 
