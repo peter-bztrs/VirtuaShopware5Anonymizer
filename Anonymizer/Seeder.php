@@ -22,6 +22,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CustomerSearchIndex;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\EmarketingPartner;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -57,6 +58,9 @@ class Seeder
             CorePaymentData::class,
             CorePaymentInstance::class,
         ),
+        'emarketing' => array(
+            EmarketingPartner::class
+        )
     );
 
     /**
