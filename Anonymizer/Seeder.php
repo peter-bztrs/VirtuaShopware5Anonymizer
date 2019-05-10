@@ -11,6 +11,7 @@ namespace ShopwareAnonymizer\Anonymizer;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\BillingAddress;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\ShippingAddress;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\ArticlesVote;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -29,6 +30,7 @@ class Seeder
             UserAddress::class,
             BillingAddress::class,
             ShippingAddress::class,
+            ArticlesVote::class,
         )
     );
 
