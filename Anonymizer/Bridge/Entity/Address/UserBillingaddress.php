@@ -14,7 +14,7 @@ class UserBillingaddress extends AbstractAddress
     public function __construct($identifier)
     {
         parent::__construct($identifier);
-        $this->formattersByAttribute['ustid'] = 'taxpayerIdentificationNumber';
+        $this->formattersByAttribute['ustid'] = 'randomNumber';
     }
 
     /** {@inheritdoc} */

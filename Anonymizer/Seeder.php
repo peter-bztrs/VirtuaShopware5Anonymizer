@@ -20,6 +20,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -52,6 +53,7 @@ class Seeder
             CoreAuth::class,
             CoreLog::class,
             CorePaymentData::class,
+            CorePaymentInstance::class,
         ),
     );
 
