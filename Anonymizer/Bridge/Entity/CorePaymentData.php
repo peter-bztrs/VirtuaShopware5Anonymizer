@@ -19,7 +19,7 @@ class CorePaymentData extends AbstractBridgeEntity
         'bic' => 'swiftBicNumber',
         'iban' => 'iban',
         'account_number' => 'bankAccountNumber',
-        'bankCode' => 'randomNumber',
+        'bank_code' => 'randomNumber',
         'account_holder' => 'name',
     );
 
