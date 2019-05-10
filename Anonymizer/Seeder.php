@@ -18,6 +18,7 @@ use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CmsSupport;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
+use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
 use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
@@ -48,6 +49,7 @@ class Seeder
         ),
         'coreAuth' => array(
             CoreAuth::class,
+            CoreLog::class
         ),
     );
 
