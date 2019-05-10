@@ -30,13 +30,26 @@ class BridgeEntityTestingDecorator extends AbstractBridgeEntity
     /** @var string to seed fake data generator */
     protected $identifier;
 
-    public function __construct(AbstractBridgeEntity $bridgeEntity)
+    /** @var string */
+    protected $fixturePath;
+
+    public function __construct(AbstractBridgeEntity $bridgeEntity, $fixturePath)
     {
         $this->entityClass = $bridgeEntity->getEntityClass();
         $this->entityName = $bridgeEntity->getEntityName();
         $this->identifier = $bridgeEntity->getIdentifier();
         $this->formattersByAttribute = $bridgeEntity->getFormattersByAttribute();
         $this->uniqueAttributes = $bridgeEntity->getUniqueAttributes();
+
+        $this->fixturePath = $fixturePath;
+    }
+
+    /**
+     * @param $rowsPerQuery
+     */
+    protected function setRowsPerQuery($rowsPerQuery)
+    {
+        $this->rowsPerQuery = $rowsPerQuery;
     }
 
     /**

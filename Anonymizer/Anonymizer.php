@@ -32,7 +32,6 @@ class Anonymizer
         $this->seeder = new Seeder();
     }
 
-    //  todo make unit tests
     /**
      * @throws \Doctrine\DBAL\ConnectionException
      */
