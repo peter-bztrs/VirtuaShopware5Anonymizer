@@ -11,6 +11,12 @@ namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
 class UserBillingaddress extends AbstractAddress
 {
+    public function __construct($identifier)
+    {
+        parent::__construct($identifier);
+        $this->formattersByAttribute['ustid'] = 'taxpayerIdentificationNumber';
+    }
+
     /** {@inheritdoc} */
     protected $tableName = 's_user_billingaddress';
 
