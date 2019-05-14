@@ -32,7 +32,7 @@ class AnonymizeCommand extends ShopwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         /** @var Anonymizer $anonymizer */
-        $anonymizer = $this->container->get('shopware_anonymizer.anonymizer.anonymizer');
+        $anonymizer = $this->container->get('virtua_shopware_anonymizer.anonymizer.anonymizer');
 
         $out = fopen('php://stdout', 'w');
         $anonymizer->setOutputStream($out);

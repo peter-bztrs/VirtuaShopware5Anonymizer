@@ -7,24 +7,27 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
 use Shopware\Components\Model\ModelManager;
-use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
-use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AnonymizableValue;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Iterator;
 
-abstract class AbstractBridgeEntity implements AnonymizableEntity
+abstract class AbstractBridgeEntity
 {
+    /**
+     * Rows to be fetch by one query
+     */
     const ROWS_PER_QUERY = 50000;
 
     /** @var string, needs to be set in descendants */
     protected $tableName;
 
     /** @var string[], needs to be set in descendants */
-    protected $formattersByAttribute = array();
+    protected $formattersByAttribute = [];
 
     /** @var string[], needs to be set in descendants */
-    protected $uniqueAttributes = array();
+    protected $uniqueAttributes = [];
 
     /** @var string, name of entity as translatable string, needs to be set in descendants */
     protected $entityName;
@@ -36,7 +39,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     protected $modelManager;
 
     /** @var array */
-    protected $data = array();
+    protected $data = [];
 
     /** @var AnonymizableValue[]|null */
     protected $values;
@@ -62,7 +65,7 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      */
     public function clearInstance()
     {
-        $this->data = array();
+        $this->data = [];
         $this->values = null;
     }
 
@@ -167,14 +170,6 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     }
 
     /**
-     * @return string
-     */
-    public function getEntityClass()
-    {
-        return $this->entityClass;
-    }
-
-    /**
      * @return string[]
      */
     public function getFormattersByAttribute()
@@ -208,8 +203,6 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
 
     /**
      * @return int
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     protected function getEntitySize()
     {

@@ -9,12 +9,12 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\AbstractBridgeEntity;
 
 abstract class AbstractAddress extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'company'      => 'company',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
@@ -25,9 +25,5 @@ abstract class AbstractAddress extends AbstractBridgeEntity
         'phone'   => 'e164PhoneNumber',
         'additional_address_line1'   => 'address',
         'additional_address_line2'   => 'address',
-    );
-
-    /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
-    );
+    ];
 }

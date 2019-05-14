@@ -9,12 +9,10 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class EmarketingPartner extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'company'      => 'company',
         'contact' => 'word',
         'street'   => 'streetAddress',
@@ -26,12 +24,12 @@ class EmarketingPartner extends AbstractBridgeEntity
         'email'      => 'safeEmail',
         'web' => 'url',
         'profil' => 'paragraph',
-    );
+    ];
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
+    protected $uniqueAttributes = [
         'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_emarketing_partner';

@@ -9,9 +9,7 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
 
-use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
-
-class Iterator implements CollectionIterator
+class Iterator
 {
     /** @var int number of rows in entity */
     protected $totalSize;
@@ -75,6 +73,9 @@ class Iterator implements CollectionIterator
         return $this->totalSize;
     }
 
+    /**
+     * @param $callable
+     */
     public function walk($callable)
     {
         $self = $this; // PHP 5.3

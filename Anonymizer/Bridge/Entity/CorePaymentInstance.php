@@ -9,12 +9,10 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class CorePaymentInstance extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
         'address' => 'address',
@@ -26,12 +24,12 @@ class CorePaymentInstance extends AbstractBridgeEntity
         'bank_code' => 'randomNumber',
         'bic' => 'swiftBicNumber',
         'iban' => 'iban',
-    );
+    ];
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
+    protected $uniqueAttributes = [
         'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_core_payment_instance';

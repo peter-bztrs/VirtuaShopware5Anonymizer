@@ -9,21 +9,14 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class CoreLog extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'user'  => 'name',
         'ip_address' => 'ipv4',
         'user_agent' => 'userAgent',
-    );
-
-    /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
-        'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_core_log';

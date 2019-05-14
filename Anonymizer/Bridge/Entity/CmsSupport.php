@@ -9,19 +9,17 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class CmsSupport extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'email'      => 'safeEmail',
-    );
+    ];
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
+    protected $uniqueAttributes = [
         'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_cms_support';

@@ -9,24 +9,22 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class CampaignsMaildata extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'email'      => 'safeEmail',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
         'street'   => 'streetAddress',
         'zipcode'   => 'postcode',
         'city'   => 'city',
-    );
+    ];
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
+    protected $uniqueAttributes = [
         'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_campaigns_maildata';

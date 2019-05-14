@@ -9,12 +9,10 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-
 class CustomerSearchIndex extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
-    protected $formattersByAttribute = array(
+    protected $formattersByAttribute = [
         'email'      => 'safeEmail',
         'firstname'  => 'firstName',
         'lastname'   => 'lastName',
@@ -29,12 +27,12 @@ class CustomerSearchIndex extends AbstractBridgeEntity
         'additional_address_line2'   => 'address',
         'country_name' => 'country',
         'age' => 'randomDigit',
-    );
+    ];
 
     /** {@inheritdoc} */
-    protected $uniqueAttributes = array(
+    protected $uniqueAttributes = [
         'email'
-    );
+    ];
 
     /** {@inheritdoc} */
     protected $tableName = 's_customer_search_index';

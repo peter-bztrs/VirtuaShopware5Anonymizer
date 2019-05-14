@@ -8,12 +8,10 @@
  * @author     Fabian Schmengler <fs@integer-net.de>
  */
 
-namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer;
-
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
 
 class AnonymizableValue
 {
-    const __CLASS = __CLASS__;
     /**
      * @var string
      */
@@ -27,12 +25,19 @@ class AnonymizableValue
      */
     private $unique;
 
+    /**
+     * AnonymizableValue constructor.
+     * @param $formatter
+     * @param $value
+     * @param bool $unique
+     */
     public function __construct($formatter, $value, $unique = false)
     {
         $this->formatter = $formatter;
         $this->value = $value;
         $this->unique = (bool) $unique;
     }
+
     /**
      * @return string
      */
@@ -42,19 +47,8 @@ class AnonymizableValue
     }
 
     /**
-     * If the value is optional, returns probability of presence.
-     *   1.0 = not optional
-     *   0.0 = always empty
-     *
-     * @return float
+     * @return bool
      */
-    public function getOptionalWeight()
-    {
-        //TODO use this
-        //TODO or add a FakerFormatterOptions property for more customizability
-        return 1.0;
-    }
-
     public function isUnique()
     {
         return $this->unique;

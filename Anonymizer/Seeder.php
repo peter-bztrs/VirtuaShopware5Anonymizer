@@ -33,12 +33,12 @@ use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
  */
 class Seeder
 {
-    /** todo get tesing data and check wchich tables needs to be seed by same seed
+    /**
      * AbstractBridgeEntity[] by seed used to seed anonymizer
      * @var array[]
      */
-    protected $entitiesBySeed = array(
-        'userSeed' => array(
+    protected $entitiesBySeed = [
+        'userSeed' => [
             User::class,
             UserAddresses::class,
             UserBillingAddress::class,
@@ -53,20 +53,20 @@ class Seeder
 
             OrderBillingaddress::class,
             OrderShippingaddress::class,
-        ),
-        'cms' => array(
+        ],
+        'cms' => [
             CmsSupport::class,
-        ),
-        'coreAuth' => array(
+        ],
+        'coreAuth' => [
             CoreAuth::class,
             CoreLog::class,
             CorePaymentData::class,
             CorePaymentInstance::class,
-        ),
-        'emarketing' => array(
+        ],
+        'emarketing' => [
             EmarketingPartner::class
-        )
-    );
+        ]
+    ];
 
     /**
      * @return array[]

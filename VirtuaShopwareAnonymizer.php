@@ -22,7 +22,7 @@ class VirtuaShopwareAnonymizer extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'Shopware_Console_Add_Command'=>'registerVendor',
+            'Shopware_Console_Add_Command' => 'registerVendor',
 //            todo remove after complete manual testing
             'Enlight_Controller_Front_StartDispatch' => 'registerVendor',
 //            todo remove after complete manual testing
