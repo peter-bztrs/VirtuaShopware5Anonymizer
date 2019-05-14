@@ -6,10 +6,10 @@
  * @author     Fabian Schmengler <fs@integer-net.de>
  */
 
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor;
+namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor;
 
 
-use ShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
 
 interface AnonymizableEntity
 {

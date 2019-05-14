@@ -7,11 +7,11 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
 
 use Shopware\Components\Model\ModelManager;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
 
 abstract class AbstractBridgeEntity implements AnonymizableEntity
 {

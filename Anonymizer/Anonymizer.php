@@ -7,10 +7,10 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer;
+namespace VirtuaShopwareAnonymizer\Anonymizer;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Updater;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Updater;
 
 class Anonymizer
 {
@@ -27,7 +27,7 @@ class Anonymizer
      */
     public function __construct()
     {
-        $anonymizer = new \ShopwareAnonymizer\IntegerNet\Anonymizer\Anonymizer();
+        $anonymizer = new \VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Anonymizer();
         $this->updater = new Updater($anonymizer);
         $this->seeder = new Seeder();
     }

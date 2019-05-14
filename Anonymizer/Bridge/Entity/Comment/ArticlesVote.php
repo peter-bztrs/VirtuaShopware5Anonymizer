@@ -7,7 +7,7 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment;
 
 class ArticlesVote extends AbstractComment
 {

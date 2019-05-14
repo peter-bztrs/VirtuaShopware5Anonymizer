@@ -7,14 +7,14 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer;
+namespace VirtuaShopwareAnonymizer;
 
 use Shopware\Components\Plugin;
 
 /**
- * Shopware-Plugin ShopwareAnonymizer.
+ * Shopware-Plugin VirtuaShopwareAnonymizer.
  */
-class ShopwareAnonymizer extends Plugin
+class VirtuaShopwareAnonymizer extends Plugin
 {
     /**
      * {@inheritdoc}

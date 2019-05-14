@@ -6,7 +6,7 @@
  * @author     Fabian Schmengler <fs@integer-net.de>
  */
 
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor;
+namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor;
 
 
 interface CollectionIterator

@@ -7,9 +7,9 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
 abstract class AbstractAddress extends AbstractBridgeEntity
 {

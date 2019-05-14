@@ -7,10 +7,10 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Commands;
+namespace VirtuaShopwareAnonymizer\Commands;
 
 use Shopware\Commands\ShopwareCommand;
-use ShopwareAnonymizer\Anonymizer\Anonymizer;
+use VirtuaShopwareAnonymizer\Anonymizer\Anonymizer;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -22,7 +22,7 @@ class AnonymizeCommand extends ShopwareCommand
     protected function configure()
     {
         $this
-            ->setName('shopwareAnonymizer:anonymize')
+            ->setName('VirtuaShopwareAnonymizer:anonymize')
             ->setDescription('Anonymize user data in database');
     }
 

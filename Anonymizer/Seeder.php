@@ -6,26 +6,26 @@
  * Time: 11:41
  */
 
-namespace ShopwareAnonymizer\Anonymizer;
+namespace VirtuaShopwareAnonymizer\Anonymizer;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\OrderBillingaddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\OrderShippingaddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddresses;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingaddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingaddress;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsLogs;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMailaddresses;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMaildata;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CmsSupport;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\CustomerSearchIndex;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\EmarketingPartner;
-use ShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\OrderBillingaddress;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\OrderShippingaddress;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserAddresses;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserBillingaddress;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\UserShippingaddress;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsLogs;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMailaddresses;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CampaignsMaildata;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CmsSupport;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\ArticlesVote;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment\BlogComments;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CustomerSearchIndex;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\EmarketingPartner;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 
 /**
  * Class Seeder

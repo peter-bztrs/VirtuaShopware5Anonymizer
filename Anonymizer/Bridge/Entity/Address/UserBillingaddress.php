@@ -7,7 +7,7 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
 class UserBillingaddress extends AbstractAddress
 {

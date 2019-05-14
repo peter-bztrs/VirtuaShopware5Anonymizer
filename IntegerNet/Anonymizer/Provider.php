@@ -8,7 +8,7 @@
  * @author     Fabian Schmengler <fs@integer-net.de>
  */
 
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer;
+namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer;
 
 
 use Faker\Factory;

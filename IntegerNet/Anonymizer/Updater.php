@@ -7,10 +7,10 @@
  * @copyright  Copyright (c) 2015 integer_net GmbH (http://www.integer-net.de/)
  * @author     Fabian Schmengler <fs@integer-net.de>
  */
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer;
+namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer;
 
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
 
 class Updater
 {

@@ -3,9 +3,9 @@
 Shopware plugin providing function of user data anonymization
 
 ##Installation
-Run "composer install command" using shopware composer,
+Run "composer install" command using shopware composer,
 while beeing in plugin dir.
-Than install plugin with plugin manager or via console command.
+Than install plugin with plugin manager or via console command line.
 
 
 ##Usage

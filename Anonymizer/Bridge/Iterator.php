@@ -7,9 +7,9 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
 
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
 
 class Iterator implements CollectionIterator
 {

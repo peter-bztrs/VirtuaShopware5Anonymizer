@@ -7,9 +7,9 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
 class CampaignsMaildata extends AbstractBridgeEntity
 {

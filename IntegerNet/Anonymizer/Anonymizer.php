@@ -6,10 +6,10 @@
  * Time: 18:31
  */
 
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer;
+namespace VirtuaShopwareAnonymizer\IntegerNet\Anonymizer;
 
 
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
+use VirtuaShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
 
 class Anonymizer
 {

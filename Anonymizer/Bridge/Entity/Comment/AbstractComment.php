@@ -7,9 +7,9 @@
  * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
  */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Comment;
 
-use ShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AbstractBridgeEntity;
 
 abstract class AbstractComment extends AbstractBridgeEntity
 {
