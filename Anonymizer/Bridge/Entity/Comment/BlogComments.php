@@ -1,6 +1,5 @@
 <?php
-/**
- * User: Jakub Kułaga
+IteratorKułaga
  * Date: 2019-05-09
  * Time: 09:41
  *

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: virtua
- * Date: 2019-05-09
- * Time: 11:41
- */
 
 namespace VirtuaShopwareAnonymizer\Anonymizer;
 

@@ -30,5 +30,6 @@ class AnonymizerTest extends TestCase
     // todo
     public function testAnonymizeAll()
     {
+        $this->assertFalse($this->connection->getSchemaManager()->tablesExist('s_user'));
     }
 }
