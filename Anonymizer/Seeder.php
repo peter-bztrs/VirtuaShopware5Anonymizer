@@ -17,7 +17,7 @@ use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreAuth;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CoreLog;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentData;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CorePaymentInstance;
-use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\CustomerSearchIndex;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address\CustomerSearchIndex;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\EmarketingPartner;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\User;
 

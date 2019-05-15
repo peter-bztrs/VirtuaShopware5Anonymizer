@@ -1,23 +1,15 @@
 <?php
 
-namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
-class CustomerSearchIndex extends AbstractBridgeEntity
+class CustomerSearchIndex extends AbstractAddress
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
         'email'      => 'safeEmail',
-        'firstname'  => 'firstName',
-        'lastname'   => 'lastName',
         'title' => 'title',
         'birthday'   => 'date',
         'company'      => 'company',
-        'street'   => 'streetAddress',
-        'zipcode'   => 'postcode',
-        'city'   => 'city',
-        'phone'   => 'e164PhoneNumber',
-        'additional_address_line1'   => 'address',
-        'additional_address_line2'   => 'address',
         'country_name' => 'country',
         'age' => 'randomDigit',
     ];
