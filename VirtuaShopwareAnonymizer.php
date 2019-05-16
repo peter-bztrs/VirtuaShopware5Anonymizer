@@ -23,17 +23,7 @@ class VirtuaShopwareAnonymizer extends Plugin
     {
         return [
             'Shopware_Console_Add_Command' => 'registerVendor',
-//            todo remove after complete manual testing
-            'Enlight_Controller_Front_StartDispatch' => 'registerVendor',
-//            todo remove after complete manual testing
-            'Enlight_Controller_Action_PreDispatch' => 'testController',
         ];
-    }
-
-    //todo remove after complete manual testing
-    public function testController(\Enlight_Controller_ActionEventArgs $args)
-    {
-        $args->getSubject()->View()->addTemplateDir($this->getPath() . '/Resources/views/');
     }
 
     /**
