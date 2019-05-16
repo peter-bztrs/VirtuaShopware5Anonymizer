@@ -52,7 +52,7 @@ abstract class AbstractBridgeEntity
     }
 
     /**
-     * {@inheritdoc}
+     * Used after in update function
      */
     public function clearInstance()
     {
@@ -128,7 +128,7 @@ abstract class AbstractBridgeEntity
     }
 
     /**
-     * {@inheritdoc}
+     * @param $data
      */
     public function setRawData($data)
     {
@@ -144,7 +144,7 @@ abstract class AbstractBridgeEntity
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getIdentifier()
     {
@@ -152,7 +152,7 @@ abstract class AbstractBridgeEntity
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getEntityName()
     {
