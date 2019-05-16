@@ -6,7 +6,7 @@ class CampaignsMailaddresses extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'email'      => 'safeEmail',
+        'email' => 'safeEmail',
     ];
 
     /** {@inheritdoc} */

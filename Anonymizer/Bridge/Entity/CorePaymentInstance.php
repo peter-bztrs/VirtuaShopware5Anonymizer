@@ -6,11 +6,11 @@ class CorePaymentInstance extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'firstname'  => 'firstName',
-        'lastname'   => 'lastName',
+        'firstname' => 'firstName',
+        'lastname' => 'lastName',
         'address' => 'address',
-        'zipcode'   => 'postcode',
-        'city'   => 'city',
+        'zipcode' => 'postcode',
+        'city' => 'city',
         'account_number' => 'bankAccountNumber',
         'account_holder' => 'name',
         'bank_name'  => 'name',

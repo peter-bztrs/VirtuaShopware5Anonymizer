@@ -6,7 +6,7 @@ class CorePaymentData extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'bankname'  => 'name',
+        'bankname' => 'name',
         'bic' => 'swiftBicNumber',
         'iban' => 'iban',
         'account_number' => 'bankAccountNumber',

@@ -6,7 +6,7 @@ class CoreLog extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'user'  => 'name',
+        'user' => 'name',
         'ip_address' => 'ipv4',
         'user_agent' => 'userAgent',
     ];

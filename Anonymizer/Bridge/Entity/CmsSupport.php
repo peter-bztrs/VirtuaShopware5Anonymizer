@@ -6,7 +6,7 @@ class CmsSupport extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'email'      => 'safeEmail',
+        'email' => 'safeEmail',
     ];
 
     /** {@inheritdoc} */

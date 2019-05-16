@@ -2,15 +2,14 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer;
 
+use Doctrine\DBAL\Connection;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\AbstractBridgeEntity;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Iterator;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AnonymizableValue;
 
 class Anonymizer
 {
-    /**
-     * @var Seeder
-     */
+    /** @var Seeder */
     protected $seeder;
 
     /** @var Provider */
@@ -28,16 +27,19 @@ class Anonymizer
     /** @var AbstractBridgeEntity */
     private $entityModel;
 
+    /** @var Connection */
+    private $connection;
+
     /**
      * Anonymizer constructor.
      * @param Seeder $seeder
      * @param Provider $provider
      */
-    public function __construct(Seeder $seeder, Provider $provider)
+    public function __construct(Seeder $seeder, Provider $provider, Connection $connection)
     {
-        //todo dodac do providera konfiguracje z pluginu
         $this->seeder = $seeder;
         $this->provider = $provider;
+        $this->connection = $connection;
     }
 
     /**
@@ -45,13 +47,12 @@ class Anonymizer
      */
     public function anonymizeAll()
     {
-        $connection = Shopware()->Models()->getConnection();
-        $connection->beginTransaction();
+        $this->connection->beginTransaction();
         try {
             foreach ($this->seeder->getEntitiesBySeed() as $seed => $entityClassnames) {
                 foreach ($entityClassnames as $className) {
                     /** @var AbstractBridgeEntity $bridgeEntity */
-                    $bridgeEntity = new $className($seed);
+                    $bridgeEntity = new $className($seed, $this->connection);
                     if ($bridgeEntity->tableExists()) {
                         while ($collectionIterator = $bridgeEntity->getCollectionIterator()) {
                             $this->update($collectionIterator, $bridgeEntity);
@@ -59,9 +60,9 @@ class Anonymizer
                     }
                 }
             }
-            $connection->commit();
+            $this->connection->commit();
         } catch (\Exception $e) {
-            $connection->rollBack();
+            $this->connection->rollBack();
             throw $e;
         }
     }
@@ -137,7 +138,7 @@ class Anonymizer
      */
     private function getFieldIdentifier(AbstractBridgeEntity $entity, AnonymizableValue $value)
     {
-        return sprintf('%s|%s', $entity->getIdentifier(), join('', (array)$value->getValue()));
+        return sprintf('%s|%s', $entity->getIdentifier(), $value->getValue());
     }
 
     /**

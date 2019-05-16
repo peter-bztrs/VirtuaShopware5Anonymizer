@@ -6,15 +6,15 @@ class EmarketingPartner extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'company'      => 'company',
+        'company' => 'company',
         'contact' => 'word',
-        'street'   => 'streetAddress',
-        'zipcode'   => 'postcode',
-        'city'   => 'city',
-        'phone'   => 'e164PhoneNumber',
+        'street' => 'streetAddress',
+        'zipcode' => 'postcode',
+        'city' => 'city',
+        'phone' => 'e164PhoneNumber',
         'fax' => 'e164PhoneNumber',
         'country' => 'country',
-        'email'      => 'safeEmail',
+        'email' => 'safeEmail',
         'web' => 'url',
         'profil' => 'paragraph',
     ];

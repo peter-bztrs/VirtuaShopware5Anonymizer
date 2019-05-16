@@ -2,11 +2,13 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity\Address;
 
+use Doctrine\DBAL\Connection;
+
 class UserBillingaddress extends AbstractAddress
 {
-    public function __construct($identifier)
+    public function __construct($identifier, Connection $connection)
     {
-        parent::__construct($identifier);
+        parent::__construct($identifier, $connection);
         $this->formattersByAttribute['ustid'] = 'randomNumber';
     }
 

@@ -11,6 +11,7 @@
         <service class="VirtuaShopwareAnonymizer\Anonymizer\Anonymizer" id="virtua_shopware_anonymizer.anonymizer.anonymizer">
             <argument id="virtua_shopware_anonymizer.anonymizer.seeder" type="service"/>
             <argument id="virtua_shopware_anonymizer.anonymizer.provider" type="service"/>
+            <argument id="dbal_connection" type="service"/>
         </service>
 
         <service class="VirtuaShopwareAnonymizer\Commands\AnonymizeCommand" id="shopware_anonymizer.commands.anonymize_command">

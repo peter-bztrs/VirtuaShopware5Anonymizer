@@ -24,6 +24,7 @@ class Provider
      */
     public function __construct($locale = null)
     {
+        //todo add locale configuration from plugin config
         if ($locale === null) {
             $locale = Factory::DEFAULT_LOCALE;
         }
@@ -61,10 +62,28 @@ class Provider
             $faker = $faker->unique();
         }
         $this->seedRng($formatter . $identifier);
-        $result = $faker->format($formatter);
+        $customFormatted = $this->customFormat($formatter, $faker);
+        $result = $customFormatted ? $customFormatted : $this->faker->format($formatter);
         $this->resetRng();
 
         return $result;
+    }
+
+    /**
+     * @param $formatter
+     * @param $faker
+     * @return mixed|null
+     */
+    protected function customFormat($formatter, $faker)
+    {
+        switch ($formatter) {
+            case "salutation":
+                $salutation = ['mr', 'ms'];
+                return $salutation[$faker->numberBetween(0, 1)];
+                break;
+            default:
+                return null;
+        }
     }
 
     /**

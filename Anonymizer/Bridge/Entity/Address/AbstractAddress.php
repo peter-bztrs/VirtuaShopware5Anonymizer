@@ -18,5 +18,6 @@ abstract class AbstractAddress extends AbstractBridgeEntity
         'phone'   => 'e164PhoneNumber',
         'additional_address_line1'   => 'address',
         'additional_address_line2'   => 'address',
+        'salutation' => 'salutation',
     ];
 }

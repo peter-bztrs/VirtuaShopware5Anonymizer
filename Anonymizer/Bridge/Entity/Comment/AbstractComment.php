@@ -9,6 +9,6 @@ abstract class AbstractComment extends AbstractBridgeEntity
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
         'name'  => 'name',
-        'email'      => 'safeEmail',
+        'email' => 'safeEmail',
     ];
 }

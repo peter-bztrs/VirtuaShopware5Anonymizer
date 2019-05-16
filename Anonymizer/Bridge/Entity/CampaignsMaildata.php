@@ -6,12 +6,13 @@ class CampaignsMaildata extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'email'      => 'safeEmail',
-        'firstname'  => 'firstName',
-        'lastname'   => 'lastName',
-        'street'   => 'streetAddress',
-        'zipcode'   => 'postcode',
-        'city'   => 'city',
+        'email' => 'safeEmail',
+        'firstname' => 'firstName',
+        'lastname' => 'lastName',
+        'street' => 'streetAddress',
+        'zipcode' => 'postcode',
+        'city' => 'city',
+        'salutation' => 'salutation',
     ];
 
     /** {@inheritdoc} */

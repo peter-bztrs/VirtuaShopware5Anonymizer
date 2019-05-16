@@ -6,7 +6,7 @@ class CoreAuth extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'name'  => 'name',
+        'name' => 'name',
         'email' => 'safeEmail',
     ];
 

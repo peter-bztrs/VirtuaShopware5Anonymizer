@@ -2,15 +2,13 @@
 
 namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use Shopware\Components\Model\ModelManager;
+use Doctrine\DBAL\Connection;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AnonymizableValue;
 use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Iterator;
 
 abstract class AbstractBridgeEntity
 {
-    /**
-     * Rows to be fetch by one query
-     */
+    /** @var int rows to be fetch by one query */
     const ROWS_PER_QUERY = 50000;
 
     /** @var string, needs to be set in descendants */
@@ -28,14 +26,14 @@ abstract class AbstractBridgeEntity
     /** @var string to seed fake data generator */
     protected $identifier;
 
-    /** @var ModelManager */
-    protected $modelManager;
+    /** @var Connection */
+    protected $connection;
 
     /** @var array */
     protected $data = [];
 
-    /** @var AnonymizableValue[]|null */
-    protected $values;
+    /** @var AnonymizableValue[]*/
+    protected $values = [];
 
     /** @var int currentPage of collection for chunking */
     protected $currentPage = 0;
@@ -47,10 +45,10 @@ abstract class AbstractBridgeEntity
      * AbstractBridgeEntity constructor.
      * @param $identifier string
      */
-    public function __construct($identifier)
+    public function __construct($identifier, Connection $connection)
     {
         $this->identifier = $identifier;
-        $this->modelManager = Shopware()->Models();
+        $this->connection = $connection;
     }
 
     /**
@@ -59,15 +57,15 @@ abstract class AbstractBridgeEntity
     public function clearInstance()
     {
         $this->data = [];
-        $this->values = null;
+        $this->values = [];
     }
 
     /**
-     * {@inheritdoc}
+     * Get AnonymizableValues
+     * @return AnonymizableValue[]|null
      */
     public function getValues()
     {
-        if ($this->values === null) {
             $this->values = [];
             foreach ($this->formattersByAttribute as $attribute => $formatter) {
                 $this->values[$attribute] = new AnonymizableValue(
@@ -76,13 +74,12 @@ abstract class AbstractBridgeEntity
                     in_array($attribute, $this->uniqueAttributes)
                 );
             }
-        }
 
         return $this->values;
     }
 
     /**
-     * {@inheritdoc}
+     * Update anonymizable values
      */
     public function updateValues()
     {
@@ -90,7 +87,7 @@ abstract class AbstractBridgeEntity
             return $value->getValue();
         },
             $this->values);
-        $this->modelManager->getConnection()->update(
+        $this->connection->update(
             $this->tableName,
             $values,
             ['id' => $this->data['id']]
@@ -126,7 +123,7 @@ abstract class AbstractBridgeEntity
      */
     public function tableExists()
     {
-        return (bool) $this->modelManager->getConnection()
+        return (bool) $this->connection
             ->getSchemaManager()->tablesExist([$this->tableName]);
     }
 
@@ -183,7 +180,7 @@ abstract class AbstractBridgeEntity
      */
     protected function getDataChunk()
     {
-        $data = $this->modelManager->getDBALQueryBuilder()
+        $data = $this->connection->createQueryBuilder()
             ->select($this->createSelectArray($this->alias))
             ->from($this->tableName, $this->alias)
             ->setMaxResults(self::ROWS_PER_QUERY)
@@ -199,7 +196,7 @@ abstract class AbstractBridgeEntity
      */
     protected function getEntitySize()
     {
-        return (int) $this->modelManager->getDBALQueryBuilder()
+        return (int) $this->connection->createQueryBuilder()
             ->select('count(' . $this->alias . '.id)')
             ->from($this->tableName, $this->alias)
             ->execute()

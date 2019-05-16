@@ -6,10 +6,11 @@ class User extends AbstractBridgeEntity
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'email'      => 'safeEmail',
-        'firstname'  => 'firstName',
-        'lastname'   => 'lastName',
-        'birthday'   => 'date',
+        'email' => 'safeEmail',
+        'firstname' => 'firstName',
+        'lastname' => 'lastName',
+        'birthday' => 'date',
+        'salutation' => 'salutation',
     ];
 
     /** {@inheritdoc} */

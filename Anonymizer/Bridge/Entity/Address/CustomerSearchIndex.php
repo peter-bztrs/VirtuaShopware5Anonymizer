@@ -6,10 +6,10 @@ class CustomerSearchIndex extends AbstractAddress
 {
     /** {@inheritdoc} */
     protected $formattersByAttribute = [
-        'email'      => 'safeEmail',
+        'email' => 'safeEmail',
         'title' => 'title',
-        'birthday'   => 'date',
-        'company'      => 'company',
+        'birthday' => 'date',
+        'company' => 'company',
         'country_name' => 'country',
         'age' => 'randomDigit',
     ];
