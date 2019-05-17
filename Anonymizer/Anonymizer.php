@@ -34,6 +34,7 @@ class Anonymizer
      * Anonymizer constructor.
      * @param Seeder $seeder
      * @param Provider $provider
+     * @param Connection $connection
      */
     public function __construct(Seeder $seeder, Provider $provider, Connection $connection)
     {

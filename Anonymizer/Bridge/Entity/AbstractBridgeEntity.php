@@ -43,7 +43,8 @@ abstract class AbstractBridgeEntity
 
     /**
      * AbstractBridgeEntity constructor.
-     * @param $identifier string
+     * @param $identifier
+     * @param Connection $connection
      */
     public function __construct($identifier, Connection $connection)
     {

@@ -15,6 +15,10 @@ shopwareAnonymizer:anonymize will be accessible in command line.
 
 Command will anonymize data in database and print output to the console.
 
+##Testing
+To test this plugin you need to prepare database and set
+connection data in 
+
 ###Warning
 Take into account that files in db will be permanently changed
 

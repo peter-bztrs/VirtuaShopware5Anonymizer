@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit
+        bootstrap="./Test/bootstrap.php"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+>
+    <testsuite name="VirtuaShopwareAnonymizer Test Suite">
+        <directory>Test</directory>
+    </testsuite>
+</phpunit>
