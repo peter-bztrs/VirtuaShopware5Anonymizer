@@ -7,10 +7,6 @@ use Shopware\Components\Test\Plugin\TestCase;
 
 class PluginTest extends TestCase
 {
-    protected static $ensureLoadedPlugins = [
-        'VirtuaShopwareAnonymizer' => []
-    ];
-
     public function testCanCreateInstance()
     {
         /** @var Plugin $plugin */
