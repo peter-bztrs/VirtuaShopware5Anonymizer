@@ -1,17 +1,8 @@
 <?php
-/**
- * User: Jakub Kułaga
- * Date: 2019-05-09
- * Time: 09:41
- *
- * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
- */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge;
 
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\CollectionIterator;
-
-class Iterator implements CollectionIterator
+class Iterator
 {
     /** @var int number of rows in entity */
     protected $totalSize;
@@ -75,6 +66,9 @@ class Iterator implements CollectionIterator
         return $this->totalSize;
     }
 
+    /**
+     * @param $callable
+     */
     public function walk($callable)
     {
         $self = $this; // PHP 5.3

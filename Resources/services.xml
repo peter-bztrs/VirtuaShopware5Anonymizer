@@ -4,11 +4,20 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service class="ShopwareAnonymizer\Anonymizer\Anonymizer" id="shopware_anonymizer.anonymizer.anonymizer"/>
+        <service class="VirtuaShopwareAnonymizer\Anonymizer\Provider" id="virtua_shopware_anonymizer.anonymizer.provider"/>
 
-        <service class="ShopwareAnonymizer\Commands\AnonymizeCommand" id="shopware_anonymizer.commands.anonymize_command">
+        <service class="VirtuaShopwareAnonymizer\Anonymizer\Seeder" id="virtua_shopware_anonymizer.anonymizer.seeder"/>
+
+        <service class="VirtuaShopwareAnonymizer\Anonymizer\Anonymizer" id="virtua_shopware_anonymizer.anonymizer.anonymizer">
+            <argument id="virtua_shopware_anonymizer.anonymizer.seeder" type="service"/>
+            <argument id="virtua_shopware_anonymizer.anonymizer.provider" type="service"/>
+            <argument id="dbal_connection" type="service"/>
+        </service>
+
+        <service class="VirtuaShopwareAnonymizer\Commands\AnonymizeCommand" id="shopware_anonymizer.commands.anonymize_command">
             <tag name="console.command"/>
         </service>
+
 
     </services>
 </container>

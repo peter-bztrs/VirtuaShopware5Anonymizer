@@ -1,27 +1,19 @@
 <?php
-/**
- * integer_net Magento Module
- *
- * @category   IntegerNet
- * @package    IntegerNet_Anonymizer
- * @copyright  Copyright (c) 2015 integer_net GmbH (http://www.integer-net.de/)
- * @author     Fabian Schmengler <fs@integer-net.de>
- */
 
-namespace ShopwareAnonymizer\IntegerNet\Anonymizer;
-
+namespace VirtuaShopwareAnonymizer\Anonymizer;
 
 use Faker\Factory;
 
 class Provider
 {
-    const __CLASS = __CLASS__;
-
     /**
      * @var \Faker\Generator
      */
     private $faker;
 
+    /**
+     * @var string
+     */
     private $salt;
 
     /**
@@ -30,8 +22,9 @@ class Provider
      * @param string|null $locale
      * @return void
      */
-    public function initialize($locale = null)
+    public function __construct($locale = null)
     {
+        //todo add locale configuration from plugin config
         if ($locale === null) {
             $locale = Factory::DEFAULT_LOCALE;
         }
@@ -54,8 +47,9 @@ class Provider
      * Return fake data from given Faker provider, always return the same data for each ($formatter, $identifier)
      * combination after initialized.
      *
-     * @param $formatter
-     * @param $identifier
+     * @param string $formatter
+     * @param mixed $identifier
+     * @param bool $unique
      * @return mixed
      */
     public function getFakerData($formatter, $identifier, $unique = false)
@@ -67,10 +61,29 @@ class Provider
         if ($unique) {
             $faker = $faker->unique();
         }
-        $this->seedRng($formatter.$identifier);
-        $result = $faker->format($formatter);
+        $this->seedRng($formatter . $identifier);
+        $customFormatted = $this->customFormat($formatter, $faker);
+        $result = $customFormatted ? $customFormatted : $this->faker->format($formatter);
         $this->resetRng();
+
         return $result;
+    }
+
+    /**
+     * @param $formatter
+     * @param $faker
+     * @return mixed|null
+     */
+    protected function customFormat($formatter, $faker)
+    {
+        switch ($formatter) {
+            case "salutation":
+                $salutation = ['mr', 'ms'];
+                return $salutation[$faker->numberBetween(0, 1)];
+                break;
+            default:
+                return null;
+        }
     }
 
     /**
@@ -81,10 +94,11 @@ class Provider
         $this->faker->seed(hexdec(hash("crc32b", $identifier . $this->salt)));
     }
 
+    /**
+     * Reset random number generator
+     */
     private function resetRng()
     {
-        //$this->faker->seed();
-        //TODO use above as soon as pr 543 has been merged
         mt_srand();
     }
 }

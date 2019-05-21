@@ -1,30 +1,24 @@
 <?php
-/**
- * User: Jakub Kułaga
- * Date: 2019-05-09
- * Time: 09:41
- *
- * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
- */
 
-namespace ShopwareAnonymizer\Anonymizer\Bridge;
+namespace VirtuaShopwareAnonymizer\Anonymizer\Bridge\Entity;
 
-use Shopware\Components\Model\ModelManager;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\AnonymizableValue;
-use ShopwareAnonymizer\IntegerNet\Anonymizer\Implementor\AnonymizableEntity;
+use Doctrine\DBAL\Connection;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\AnonymizableValue;
+use VirtuaShopwareAnonymizer\Anonymizer\Bridge\Iterator;
 
-abstract class AbstractBridgeEntity implements AnonymizableEntity
+abstract class AbstractBridgeEntity
 {
+    /** @var int rows to be fetch by one query */
     const ROWS_PER_QUERY = 50000;
 
-    /** @var string Entity::class, needs to be set in descendants */
-    protected $entityClass;
+    /** @var string, needs to be set in descendants */
+    protected $tableName;
 
     /** @var string[], needs to be set in descendants */
-    protected $formattersByAttribute = array();
+    protected $formattersByAttribute = [];
 
     /** @var string[], needs to be set in descendants */
-    protected $uniqueAttributes = array();
+    protected $uniqueAttributes = [];
 
     /** @var string, name of entity as translatable string, needs to be set in descendants */
     protected $entityName;
@@ -32,53 +26,47 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
     /** @var string to seed fake data generator */
     protected $identifier;
 
-    /** @var ModelManager */
-    protected $modelManager;
+    /** @var Connection */
+    protected $connection;
 
     /** @var array */
-    protected $data = array();
+    protected $data = [];
 
-    /** @var AnonymizableValue[]|null */
-    protected $values;
+    /** @var AnonymizableValue[]*/
+    protected $values = [];
 
     /** @var int currentPage of collection for chunking */
     protected $currentPage = 0;
 
-    private $alias = 'ent';
+    /** @var string */
+    protected $alias = 'ent';
 
     /**
      * AbstractBridgeEntity constructor.
-     * @param $identifier string
+     * @param $identifier
+     * @param Connection $connection
      */
-    public function __construct($identifier)
+    public function __construct($identifier, Connection $connection)
     {
         $this->identifier = $identifier;
-        $this->modelManager = Shopware()->Models();
+        $this->connection = $connection;
     }
 
     /**
-     * {@inheritdoc}
+     * Used after in update function
      */
     public function clearInstance()
     {
-        $this->data = array();
-        $this->values = null;
+        $this->data = [];
+        $this->values = [];
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setRawData($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * {@inheritdoc}
+     * Get AnonymizableValues
+     * @return AnonymizableValue[]|null
      */
     public function getValues()
     {
-        if ($this->values === null) {
             $this->values = [];
             foreach ($this->formattersByAttribute as $attribute => $formatter) {
                 $this->values[$attribute] = new AnonymizableValue(
@@ -87,41 +75,24 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
                     in_array($attribute, $this->uniqueAttributes)
                 );
             }
-        }
 
         return $this->values;
     }
 
     /**
-     * {@inheritdoc}
+     * Update anonymizable values
      */
     public function updateValues()
     {
         $values = array_map(function (AnonymizableValue $value) {
             return $value->getValue();
         },
-        $this->values);
-        $this->modelManager->getConnection()->update(
-            $this->getTableName(),
+            $this->values);
+        $this->connection->update(
+            $this->tableName,
             $values,
             ['id' => $this->data['id']]
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntityName()
-    {
-        return $this->entityName;
     }
 
     /**
@@ -151,45 +122,93 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
      * Check if provided entity class exists
      * @return bool
      */
-    public function entityExists()
+    public function tableExists()
     {
-        return class_exists($this->entityClass);
+        return (bool) $this->connection
+            ->getSchemaManager()->tablesExist([$this->tableName]);
+    }
+
+    /**
+     * @param $data
+     */
+    public function setRawData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityName()
+    {
+        return $this->entityName;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFormattersByAttribute()
+    {
+        return $this->formattersByAttribute;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getUniqueAttributes()
+    {
+        return $this->uniqueAttributes;
     }
 
     /**
      * @return array
      */
-    private function getDataChunk()
+    protected function getDataChunk()
     {
-        $data = $this->modelManager->createQueryBuilder()->select($this->createSelectArray($this->alias))
-            ->from($this->entityClass, $this->alias)
+        $data = $this->connection->createQueryBuilder()
+            ->select($this->createSelectArray($this->alias))
+            ->from($this->tableName, $this->alias)
             ->setMaxResults(self::ROWS_PER_QUERY)
             ->setFirstResult(self::ROWS_PER_QUERY * $this->currentPage)
-            ->getQuery()
-            ->execute();
+            ->execute()
+            ->fetchAll();
 
         return $data ? $data : [];
     }
 
     /**
      * @return int
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    private function getEntitySize()
+    protected function getEntitySize()
     {
-        return (int) $this->modelManager->createQueryBuilder()
+        return (int) $this->connection->createQueryBuilder()
             ->select('count(' . $this->alias . '.id)')
-            ->from($this->entityClass, $this->alias)
-            ->getQuery()
-            ->getSingleScalarResult();
+            ->from($this->tableName, $this->alias)
+            ->execute()
+            ->fetchColumn();
     }
 
     /**
      * @param $alias
      * @return string[]
      */
-    private function createSelectArray($alias)
+    protected function createSelectArray($alias)
     {
         $attributes = array_keys($this->formattersByAttribute);
         array_walk($attributes, function (&$attribute) use ($alias) {
@@ -198,13 +217,5 @@ abstract class AbstractBridgeEntity implements AnonymizableEntity
         array_unshift($attributes, $alias . '.id');
 
         return $attributes;
-    }
-
-    /**
-     * @return string
-     */
-    private function getTableName()
-    {
-        return $this->modelManager->getClassMetadata($this->entityClass)->getTableName();
     }
 }
