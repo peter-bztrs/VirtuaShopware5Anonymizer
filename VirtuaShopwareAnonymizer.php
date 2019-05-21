@@ -4,6 +4,8 @@ namespace VirtuaShopwareAnonymizer;
 
 use Shopware\Components\Plugin;
 
+require_once __DIR__ . 'autoComposerInstall.php';
+
 /**
  * Shopware-Plugin VirtuaShopwareAnonymizer.
  */
