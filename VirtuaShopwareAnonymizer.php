@@ -1,11 +1,4 @@
 <?php
-/**
- * User: Jakub Kułaga
- * Date: 2019-05-09
- * Time: 09:41
- *
- * @author  Kuba Kułaga <jkulaga@wearevirtua.com>
- */
 
 namespace VirtuaShopwareAnonymizer;
 
@@ -31,6 +24,8 @@ class VirtuaShopwareAnonymizer extends Plugin
      */
     public function registerVendor(\Enlight_Event_EventArgs $args)
     {
-        require_once $this->getPath() . '/vendor/autoload.php';
+        if (file_exists($this->getPath() . '/vendor/autoload.php')) {
+            require_once $this->getPath() . '/vendor/autoload.php';
+        }
     }
 }
