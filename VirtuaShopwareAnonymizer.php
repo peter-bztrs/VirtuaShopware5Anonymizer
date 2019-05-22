@@ -26,7 +26,18 @@ class VirtuaShopwareAnonymizer extends Plugin
     {
         return [
             'Shopware_Console_Add_Command' => 'registerVendor',
+            'Enlight_Controller_Action_PreDispatch' => 'onPostDispatchBackendIndex',
         ];
+    }
+
+    /**
+     * Register backend template
+     * @param \Enlight_Event_EventArgs $args
+     */
+    public function onPostDispatchBackendIndex(\Enlight_Event_EventArgs $args)
+    {
+        $args->getSubject()->View()
+            ->addTemplateDir($this->getPath() . '/Resources/views/');
     }
     
     /**
