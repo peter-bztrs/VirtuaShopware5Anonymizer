@@ -3,8 +3,6 @@
 namespace VirtuaShopwareAnonymizer;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\Context\ActivateContext;
-use Shopware\Components\Plugin\Context\InstallContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -29,5 +27,15 @@ class VirtuaShopwareAnonymizer extends Plugin
         return [
             'Shopware_Console_Add_Command' => 'registerVendor',
         ];
+    }
+    
+    /**
+     * @param \Enlight_Event_EventArgs $args
+     */
+    public function registerVendor()
+    {
+        if (file_exists($this->getPath() . '/vendor/autoload.php')) {
+            require_once $this->getPath() . '/vendor/autoload.php';
+        }
     }
 }
