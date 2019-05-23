@@ -1,7 +1,6 @@
 <?php
 
 if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-
     $shopwareRoot = dirname(dirname(dirname(__DIR__)));
     $extractedComposer = $shopwareRoot . '/tmp';
 

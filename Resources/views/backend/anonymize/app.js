@@ -11,7 +11,7 @@ Ext.define('Shopware.apps.Anonymize', {
         'Anonymize'
     ],
 
-    launch: function() {
+    launch: function () {
         var me = this;
         me.getController('Anonymize').anonymize();
     }
