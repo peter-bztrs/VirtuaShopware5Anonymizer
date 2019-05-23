@@ -16,10 +16,11 @@ class VirtuaShopwareAnonymizer extends Plugin
 {
     /**
      * Build with composer install
+     * when installing from plugin
      */
     public function build(ContainerBuilder $container)
     {
-        require_once __DIR__ . '/autoComposerInstall.php';
+        require __DIR__ . '/autoComposerInstall.php';
         parent::build($container);
     }
 
@@ -29,10 +30,33 @@ class VirtuaShopwareAnonymizer extends Plugin
     public static function getSubscribedEvents()
     {
         return [
+            'Shopware_Console_Add_Command' => "registerVendor",
             'Enlight_Controller_Action_PreDispatch' => 'onPostDispatchBackendIndex',
             'Shopware_CronJob_VirtuaShopwareAnonymization' => 'onVirtuaShopwareAnonymization',
             'Shopware_CronJob_Finished_Shopware_CronJob_VirtuaShopwareAnonymization' => 'onAnonymizationFinish',
         ];
+    }
+
+    /**
+     * When installing form command line
+     * @param \Enlight_Event_EventArgs $args
+     */
+    public function registerVendor()
+    {
+        require __DIR__ . '/autoComposerInstall.php';
+        if (file_exists($this->getPath() . '/vendor/autoload.php')) {
+            require_once $this->getPath() . '/vendor/autoload.php';
+        }
+    }
+
+    /**
+     * Register backend template
+     * @param \Enlight_Event_EventArgs $args
+     */
+    public function onPostDispatchBackendIndex(\Enlight_Event_EventArgs $args)
+    {
+        $args->getSubject()->View()
+            ->addTemplateDir($this->getPath() . '/Resources/views/');
     }
 
     /**
@@ -53,15 +77,5 @@ class VirtuaShopwareAnonymizer extends Plugin
         $job = $args->get('job');
         $manager = Shopware()->Container()->get('cron');
         $manager->deleteJob($job);
-    }
-
-    /**
-     * Register backend template
-     * @param \Enlight_Event_EventArgs $args
-     */
-    public function onPostDispatchBackendIndex(\Enlight_Event_EventArgs $args)
-    {
-        $args->getSubject()->View()
-            ->addTemplateDir($this->getPath() . '/Resources/views/');
     }
 }

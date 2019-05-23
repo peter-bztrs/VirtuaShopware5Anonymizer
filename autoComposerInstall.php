@@ -19,7 +19,9 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
     $application->run(new \Symfony\Component\Console\Input\ArrayInput(array('command' => 'install')), $output);
     fclose($stream);
 
-    $deleteAll = function ($str) {
+    deleteAll($extractedComposer);
+
+    function deleteAll($str) {
         if (is_file($str)) {
             return unlink($str);
         } elseif (is_dir($str)) {
@@ -30,6 +32,4 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
             return @rmdir($str);
         }
     };
-
-    $deleteAll($extractedComposer);
 }

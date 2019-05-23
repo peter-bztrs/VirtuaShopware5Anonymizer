@@ -15,4 +15,8 @@
         <changes lang="de">Erste Veröffentlichung</changes>
         <changes lang="en">Initial Release</changes>
     </changelog>
+
+    <requiredPlugins>
+        <requiredPlugin pluginName="Cron" minVersion="1.0.0"/>
+    </requiredPlugins>
 </plugin>
