@@ -4,15 +4,7 @@ namespace VirtuaShopwareAnonymizer;
 
 use Shopware\Components\Plugin;
 
-if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-    putenv('COMPOSER_HOME=' . dirname(dirname(dirname(__DIR__))) . '/composer.phar');
-    chdir(__DIR__);
-    shell_exec('php ' . dirname(dirname(dirname(__DIR__))) . '/composer.phar install');
-}
-
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
-}
+ShopwarePluginAutoinstaller::install();
 
 /**
  * Shopware-Plugin VirtuaShopwareAnonymizer.
