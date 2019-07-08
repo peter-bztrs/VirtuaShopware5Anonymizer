@@ -1,14 +1,19 @@
 {
-    "name": "root/shopware_anonymizer",
+    "name": "virtua/shopware_anonymizer",
+    "keywords": ["shopware", "anonymization", "plugin"],
     "description": "Shopware plugin used for anonymizing user data",
+    "type": "shopware-plugin",
+    "extra": {
+        "installer-name": "VirtuaShopwareAnonymizer"
+    },
     "require": {
+        "php": ">=5.6",
         "fzaninotto/faker": "^1.8"
     },
-    "license": "Use without permission hereby forbidden",
     "authors": [
         {
-            "name": "Jakub Kułaga",
-            "email": "intern4@wearevirtua.com"
+            "name": "virtua",
+            "email": "contact@wearevirtua.com"
         }
     ]
 }

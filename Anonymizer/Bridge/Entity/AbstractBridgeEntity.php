@@ -67,14 +67,14 @@ abstract class AbstractBridgeEntity
      */
     public function getValues()
     {
-            $this->values = [];
-            foreach ($this->formattersByAttribute as $attribute => $formatter) {
-                $this->values[$attribute] = new AnonymizableValue(
-                    $formatter,
-                    $this->data[$attribute],
-                    in_array($attribute, $this->uniqueAttributes)
-                );
-            }
+        $this->values = [];
+        foreach ($this->formattersByAttribute as $attribute => $formatter) {
+            $this->values[$attribute] = new AnonymizableValue(
+                $formatter,
+                $this->data[$attribute],
+                in_array($attribute, $this->uniqueAttributes)
+            );
+        }
 
         return $this->values;
     }
