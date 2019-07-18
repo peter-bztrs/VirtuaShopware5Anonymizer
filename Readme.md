@@ -22,7 +22,7 @@ composer install
 bin/console sw:pl:ins VirtuaShopwareAnonymizer --activate --clear-cache 
 ```
 ### Note
-if after installing and activating the plugin there is no 
+If after installing and activating the plugin there is no 
 Configure > Anonymize menu, just refresh the page
 
 
