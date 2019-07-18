@@ -16,11 +16,11 @@ rm -rf .git
 Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter).  
 Install via plugin manager.
 ### or
-with console by navigating to plugin dir and running 
+Install via console by navigating to plugin dir and running 
+```bash
 composer install
-and than
 bin/console sw:pl:ins VirtuaShopwareAnonymizer --activate --clear-cache 
-
+```
 ### Note
 if after installing and activating the plugin there is no 
 Configure > Anonymize menu, just refresh the page
