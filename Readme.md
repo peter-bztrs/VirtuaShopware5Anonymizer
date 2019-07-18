@@ -3,7 +3,7 @@
 Shopware plugin providing function of sensitive data anonymization.
 
 ## Installation
-Navigate to your Shopware 5 plugin dir.
+Navigate to your Shopware 5 plugin dir.  
 Download plugin with
 ```bash
 git clone https://github.com/VirtuaPL/VirtuaShopware5Anonymizer.git VirtuaShopwareAnonymizer
@@ -13,7 +13,7 @@ Remove the .git directory.
 rm -rf .git
 ```
 
-Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter).
+Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter).  
 Install via plugin manager.
 ### or
 with console by navigating to plugin dir and running 
