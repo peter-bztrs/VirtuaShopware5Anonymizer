@@ -3,9 +3,9 @@
 Shopware plugin providing function of sensitive data anonymization.
 
 ## Installation
-Download plugin
-Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter)
-Install via plugin manager
+Download plugin.
+Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter).
+Install via plugin manager.
 ### or
 with console by navigating to plugin dir and running 
 composer install
