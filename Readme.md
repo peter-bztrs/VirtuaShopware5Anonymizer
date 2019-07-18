@@ -31,7 +31,7 @@ To test this plugin you need to prepare database and set
 connection data in 
 
 ### Warning
-Take into account that files in database will be permanently changed
+Take into account that records in database will be permanently changed
 
 ## License
 Please see [License File](LICENSE) for more information.
