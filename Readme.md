@@ -1,6 +1,6 @@
 # Virtua Shopware 5 Anonymizer
 ## About Virtua Shopware 5 Anonymizer
-Shopware plugin providing function of sensitive data anonymization.
+Shopware 5 plugin providing a function of sensitive data anonymization.
 
 ## Installation
 Navigate to your Shopware 5 plugin dir.  
@@ -13,8 +13,8 @@ Remove the .git directory.
 rm -rf .git
 ```
 
-Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter).  
-Install via plugin manager.
+Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (the size of letters matter).  
+Install via plugin manager
 ### or
 Install via console by navigating to plugin dir and running 
 ```bash
@@ -23,11 +23,11 @@ bin/console sw:pl:ins VirtuaShopwareAnonymizer --activate --clear-cache
 ```
 ### Note
 If after installing and activating the plugin there is no 
-Configure > Anonymize menu, just refresh the page
+Configure > Anonymize menu, just refresh the page.
 
 
 ## Usage
-To use the plugin from admin panel your cron needs to be set
+To use the plugin from admin panel your cron needs to be set.
 
 Anonymize database from admin panel menu with
 Configure > Anonymize 
@@ -40,7 +40,7 @@ To test this plugin you need to prepare database and set
 connection data in 
 
 ### Warning
-Take into account that records in database will be permanently changed
+Take into account that records in database will be permanently changed.
 
 ## License
 Please see [License File](LICENSE) for more information.
