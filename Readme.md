@@ -1,11 +1,11 @@
-# VirtuaShopwareAnonymizer
-## About VirtuaShopwareAnonymizer
-Shopware plugin providing function of user data anonymization
+# Virtua Shopware 5 Anonymizer
+## About Virtua Shopware 5 Anonymizer
+Shopware plugin providing function of sensitive data anonymization.
 
 ## Installation
 Download plugin
 Ensure plugin dir name is exactly VirtuaShopwareAnonymizer (case of letters matter)
-Install composer via plugin manager
+Install via plugin manager
 ### or
 with console by navigating to plugin dir and running 
 composer install
@@ -22,7 +22,7 @@ To use the plugin from admin panel your cron needs to be set
 
 Anonymize database from admin panel menu with
 Configure > Anonymize 
-###Or
+### Or
 Anonymize database with console command
 bin/console VirtuaShopwareAnonymizer:anonymize
 
