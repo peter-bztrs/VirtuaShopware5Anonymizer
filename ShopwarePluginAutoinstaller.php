@@ -43,7 +43,7 @@ class ShopwarePluginAutoinstaller
     protected static function installComposerIfNotExists($shopwareComposer)
     {
         if (!file_exists($shopwareComposer)) {
-            chdir($shopwareComposer);
+            chdir(dirname(__DIR__) . '/../../');
             shell_exec(
                 <<<EOT
 echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig
